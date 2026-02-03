@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle 2: Byte Order</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Puzzle 2: Byte Order</h1>
+  <p>The system uses little-endian byte ordering. A 32-bit value was stored at address 0x1000. What word does it represent?</p>
+  <pre>
+Address   Hex Dump
+--------  ------------------------------------------------
+00001000  45 56 4F 4C 00 00 00 00 FF FF FF FF 12 34 56 78
+  </pre>
+  <p class="hint" id="hint" style="display:none;">Little-endian stores bytes in reverse order. Read the first 4 bytes backwards.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('bG92ZQ=='); // you are not slick
+    const nextPage = "puzzle3.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

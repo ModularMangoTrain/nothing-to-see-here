@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 12: String Obfuscation</title>
+</head>
+<body>
+  <h1>Puzzle 12: String Obfuscation</h1>
+  <p>A string was encrypted using XOR with a single-byte key. The encrypted bytes are shown below.</p>
+  <pre>
+Encrypted String:
+[0x2B, 0x28, 0x3D, 0x3D, 0x2A, 0x3C]
+  </pre>
+  <p>The XOR key is hidden somewhere on this page. Find it and decrypt the string.</p>
+  <p class="hint" id="hint" style="display:none;">Look at the page source. The key might be in a comment or hidden element.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+  
+  <!-- XOR Key: 0x48 -->
+  <div style="display:none;">Key = 0x48</div>
+
+  <script>
+    const expectedAnswer = atob('Y29mZmVl'); // you are not slick
+    const nextPage = "puzzle13.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

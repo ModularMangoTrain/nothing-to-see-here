@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle 4: Bit Masking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Puzzle 4: Bit Masking</h1>
+  <p>A message was stored in memory, but someone applied a bitwise AND mask to hide it. The mask was 0x7F (binary: 01111111).</p>
+  <p>When you AND a byte with a mask, only the bits where the mask has a 1 survive. Here's how AND works:</p>
+  <pre>
+AND Truth Table:
+  A | B | A AND B
+ ---|---|--------
+  0 | 0 |   0
+  0 | 1 |   0
+  1 | 0 |   0
+  1 | 1 |   1
+  </pre>
+  <p>The original bytes had their highest bit (bit 7) set to 1. After ANDing with 0x7F, here's what remains:</p>
+  <pre>
+Address   Hex Dump (after AND 0x7F)
+--------  ------------------------------------------------
+00003000  7A 69 7A 7A 69 7F 7F 7F 7F 7F 7F 7F 7F 7F 7F 7F
+  </pre>
+  <p>Reconstruct the original message. The masked bytes are ASCII characters.</p>
+  <p class="hint" id="hint" style="display:none;">The AND mask removed the highest bit. Convert the hex bytes to ASCII.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('eml6emk='); // you are not slick
+    const nextPage = "puzzle5.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 8: Stack Machine</title>
+</head>
+<body>
+  <h1>Puzzle 8: Stack Machine</h1>
+  <p>A stack-based machine executes the following operations. The stack starts empty and grows upward.</p>
+  <p>PUSH adds a value to the top of the stack. POP removes the top value. Track the stack and find what's on top at the end.</p>
+  <pre>
+Initial Stack: []
+
+PUSH 0x48     ; Stack: [0x48]
+PUSH 0x45     ; Stack: [0x48, 0x45]
+PUSH 0x4C     ; Stack: [0x48, 0x45, 0x4C]
+PUSH 0x4C     ; 
+PUSH 0x4F     ;
+POP           ; 
+POP           ; 
+PUSH 0x50     ; 
+POP           ; 
+POP           ; 
+POP           ; 
+
+Final Stack: [?]
+  </pre>
+  <p>What ASCII character is on top of the stack?</p>
+  <p class="hint" id="hint" style="display:none;">Follow each PUSH and POP operation carefully. Track what remains on the stack.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('aA=='); // you are not slick
+    const nextPage = "puzzle9.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

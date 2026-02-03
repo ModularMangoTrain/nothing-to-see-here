@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 11: Decompiled Code</title>
+</head>
+<body>
+  <h1>Puzzle 11: Decompiled Code</h1>
+  <p>A reverse engineer decompiled a function from a binary. The function transforms an input value using obfuscated math operations.</p>
+  <p>Given the input values below, compute the output and convert each result to an ASCII character.</p>
+  <pre>
+function transform(x) {
+    x = (x ^ 0x2A) + 3;
+    x = x - 5;
+    x = (x ^ 0x10);
+    return x;
+}
+
+Input values:
+  transform(0x4A) = ?  ; 'n'
+  transform(0x67) = ?  ; 'a'
+  transform(0x4B) = ?  ; 'n'
+  transform(0x62) = ?  ; 'd'
+  transform(0x73) = ?  ; 'o'
+  transform(0x71) = ?  ; 's'
+  </pre>
+  <p>What word do the six output characters spell?</p>
+  <p class="hint" id="hint" style="display:none;">Calculate step by step. Example: 0x4A ^ 0x2A = 0x60, +3 = 0x63, -5 = 0x5E, ^ 0x10 = 0x4E</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('bmFuZG9z'); // you are not slick
+    const nextPage = "puzzle12.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

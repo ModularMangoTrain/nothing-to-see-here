@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle 5: Binary Stream</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Puzzle 5: Binary Stream</h1>
+  <p>A raw binary bitstream was intercepted from a data transmission. The bits are not byte-aligned - you need to split them into 8-bit chunks manually.</p>
+  <p>Each 8 bits represents one ASCII character. Read from left to right.</p>
+  <pre>
+Binary Stream:
+011000110110100001101001011011010110101101101001011011010010000100100001
+  </pre>
+  <p class="hint" id="hint" style="display:none;">Split into groups of 8 bits, then convert each byte to ASCII. First byte: 01100011 = 0x63</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('Y2hpbWtpbQ=='); // you are not slick
+    const nextPage = "puzzle6.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 24: Obfuscated VM</title>
+</head>
+<body>
+  <h1>Puzzle 24: Obfuscated VM Opcodes</h1>
+  <p>A custom VM uses obfuscated opcodes. The opcode mapping is hidden in a table. Decode the instruction stream.</p>
+  <pre>
+Opcode Mapping Table (found elsewhere in binary):
+  0xA1 = LOAD
+  0xB2 = PRINT
+  0xC3 = XOR
+  0xD4 = ADD
+
+Instruction Stream:
+A1 57 D4 20 B2 A1 4F D4 20 B2 A1 4F D4 20 B2 A1 50 D4 20 B2 A1 45 D4 20 B2 A1 52 B2
+
+Format: [OPCODE] [OPERAND (if needed)]
+  - LOAD XX: Load value XX into register
+  - PRINT: Print register as ASCII
+  - XOR XX: XOR register with XX
+  - ADD XX: Add XX to register
+
+Initial register: 0x00
+  </pre>
+  <p>What string does the VM output?</p>
+  <p class="hint" id="hint" style="display:none;">Decode each opcode using the table. Execute: LOAD 0x47, ADD 0x20, PRINT, etc.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('d29vcGVy'); // you are not slick
+    const nextPage = "puzzle25.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

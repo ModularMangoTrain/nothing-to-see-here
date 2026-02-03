@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle 3: XOR Masking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Puzzle 3: XOR Masking</h1>
+  <p>A secret message was encrypted using XOR with a single-byte key. The same key was applied to every byte of the message.</p>
+  <p>XOR encryption works by combining each byte with a key using the XOR operation. To decrypt, XOR the encrypted bytes with the same key.</p>
+  <p><strong>Fun fact:</strong> XOR is its own inverse! If you XOR data with a key to encrypt it, XORing the result with the same key decrypts it. This is why A XOR B XOR B = A.</p>
+  <p>Below is the encrypted data. Find the key and decrypt the message. You can use <a href="https://www.w3schools.com/python/python_operators_bitwise.asp" target="_blank">bitwise operations in python</a> to loop through all possible keys (0x00 to 0xFF).</p>
+  <p>Do not overcomplicate it!</p>
+  <pre>
+Address   Hex Dump
+--------  ------------------------------------------------
+00002000  37 28 29 3B 2A 55 2D 29 2C 28 3B 3C 55 55 55 55
+  </pre>
+  <p class="hint" id="hint" style="display:none;">One byte opens all. Try XORing with common keys like 0x00-0xFF. Also try converting to binary first as it is a BITwise operation.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const _0x4a2b=['whitenights','puzzle4.html'];
+    const expectedAnswer = atob('d2hpdGVuaWdodHM='); // you are not slick
+    const nextPage = _0x4a2b[1];
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

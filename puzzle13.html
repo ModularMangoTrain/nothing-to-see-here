@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 13: Control Flow Flattening</title>
+</head>
+<body>
+  <h1>Puzzle 13: Control Flow Flattening</h1>
+  <p>A program's control flow was flattened - the blocks are shown out of order. Reconstruct the correct execution order.</p>
+  <p>Each block has a number. Follow the jumps to determine the execution sequence, then read the characters in order.</p>
+  <pre>
+Block 3:
+  char = 'z'
+  goto Block 1
+
+Block 1:
+  char = 'p'
+  goto Block 4
+
+Block 5:
+  char = 'a'
+  goto END
+
+Block 2:
+  char = 'i'
+  goto Block 5
+
+Block 4:
+  char = 'z'
+  goto Block 2
+
+START: goto Block 3
+END: program terminates
+  </pre>
+  <p>What word is spelled by reading the characters in execution order?</p>
+  <p class="hint" id="hint" style="display:none;">Start at Block 3 and follow the goto statements in order.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('cGl6emE='); // you are not slick
+    const nextPage = "puzzle14.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

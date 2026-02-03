@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puzzle 1: Memory Dump</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Puzzle 1: Memory Dump</h1>
+  <p>A snapshot of RAM was captured during a system crash. Extract the hidden message from the memory dump below.</p>
+  <pre>
+Address   Hex Dump                                          
+--------  ------------------------------------------------  
+00000000  48 65 6C 6C 6F 20 57 6F 72 6C 64 21 00 FF A3 2C  
+00000010  9B 7E 4D 3A 88 91 C2 5F 12 34 56 78 90 AB CD EF  
+00000020  00 00 00 00 FF FF FF FF 48 65 6C 6C 6F 57 6F 72  
+00000030  6C 64 00 00 00 00 00 00 00 00 00 00 00 00 00 00  
+  </pre>
+  <p class="hint" id="hint" style="display:none;">ASCII</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('aGVsbG93b3JsZA=='); // you are not slick
+    const nextPage = "puzzle2.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

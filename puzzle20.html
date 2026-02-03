@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 20: Bytecode Interpreter</title>
+</head>
+<body>
+  <h1>Puzzle 20: Bytecode Interpreter</h1>
+  <p>A custom bytecode interpreter executes the following instruction set. Decode the bytecode stream to find the output.</p>
+  <pre>
+Bytecode Instruction Set:
+  01 XX    = LOAD XX      (Load value XX into register A)
+  02 XX    = XOR XX       (XOR register A with XX)
+  03       = PRINT        (Print register A as ASCII)
+  04 XX    = ADD XX       (Add XX to register A)
+
+Initial State: A = 0
+
+Bytecode Stream:
+01 42 04 20 03 01 55 02 20 03 01 47 04 20 03
+  </pre>
+  <p>What three-character string does the program output?</p>
+  <p class="hint" id="hint" style="display:none;">Execute: LOAD, ADD, PRINT, LOAD, XOR, PRINT, LOAD, ADD, PRINT. Track register A through each operation.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('YnVn'); // you are not slick
+    const nextPage = "puzzle21.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

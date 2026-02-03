@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 17: Memory Offsets</title>
+</head>
+<body>
+  <h1>Puzzle 17: Memory Offsets</h1>
+  <p>A memory dump shows data at various offsets. Read the ASCII string starting at offset 0x00000020.</p>
+  <pre>
+Memory Dump:
+00000000: FF FF FF FF 00 00 00 00 12 34 56 78 90 AB CD EF
+00000010: 00 00 00 00 FF FF FF FF AA BB CC DD EE FF 00 11
+00000020: 53 50 41 47 48 45 54 54 49 00 00 00 00 00 00 00
+00000030: 00 00 00 00 00 00 00 00 FF FF FF FF 00 00 00 00
+  </pre>
+  <p>What word is at offset 0x00000020?</p>
+  <p class="hint" id="hint" style="display:none;">Read bytes at offset 0x20 and convert to ASCII.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('c3BhZ2hldHRp'); // you are not slick
+    const nextPage = "puzzle18.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

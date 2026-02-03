@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 21: Multi-Stage Crackme</title>
+</head>
+<body>
+  <h1>Puzzle 21: Multi-Stage Crackme</h1>
+  <p>A crackme validates input through three transformations. The final output must equal the target to pass.</p>
+  <p>Given the target output, reverse the pipeline to find the original input.</p>
+  <pre>
+Transformation Pipeline:
+  Stage 1: XOR with 0x42
+  Stage 2: Rotate bits left by 2
+  Stage 3: Add 0x10101010
+
+Target Output: 0x626F6F62696573
+
+Work backwards:
+  Stage 3 (reverse): Subtract 0x10101010
+  Stage 2 (reverse): Rotate bits right by 2
+  Stage 1 (reverse): XOR with 0x42
+
+What is the original input? (Convert to ASCII)
+  </pre>
+  <p class="hint" id="hint" style="display:none;">Work backwards from the target. Subtract 0x10101010, rotate right by 2 bits, then XOR with 0x42.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('Ym9vYmllcw=='); // you are not slick
+    const nextPage = "puzzle22.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

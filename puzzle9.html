@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 9: Control Flow</title>
+</head>
+<body>
+  <h1>Puzzle 9: Control Flow</h1>
+  <p>A program uses conditional jumps to control execution. Follow the control flow to determine which value ends up in register A.</p>
+  <p>Instructions: CMP compares values. JZ jumps if zero (equal). JMP jumps unconditionally.</p>
+  <pre>
+      MOV A, 0x41       ; A = 0x41
+      CMP A, 0x41       ; Compare A with 0x41
+      JZ label1         ; Jump to label1 if equal
+      MOV A, 0x42       ; A = 0x42
+      JMP end           ; Jump to end
+label1:
+      MOV A, 0x59       ; 
+      CMP A, 0x50       ; 
+      JZ label2         ; 
+      ADD A, 0x06       ; 
+      JMP end           ; 
+label2:
+      MOV A, 0x4E       ; 
+end:
+      ; Program ends here
+  </pre>
+  <p>What ASCII character is in register A at the end?</p>
+  <p class="hint" id="hint" style="display:none;">Start at the top. Follow each comparison and conditional jump carefully.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('Xw=='); // you are not slick
+    const nextPage = "puzzle10.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

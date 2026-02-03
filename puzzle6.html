@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 6: Assembly Trace</title>
+</head>
+<body>
+  <h1>Puzzle 6: Assembly Trace</h1>
+  <p>A debugger captured the execution of a simple program. Each sequence of instructions computes one ASCII character.</p>
+  <p>Execute the instructions step by step and convert the final value in register A to ASCII to get each letter.</p>
+  <pre>
+; Character 1
+MOV A, 0x4B    ; A = 0x4B (75)
+XOR A, 0x03    ; A = A XOR 0x03
+ADD A, 0x01    ; A = A + 0x01
+
+; Character 2
+MOV A, 0x65    ; A = 0x65 (101)
+SUB A, 0x04    ; A = A - 0x04
+
+; Character 3
+MOV A, 0x6E    ; A = 0x6E (110)
+XOR A, 0x02    ; A = A XOR 0x02
+
+; Character 4
+MOV A, 0x74    ; A = 0x74 (116)
+SUB A, 0x06    ; A = A - 0x06
+
+; Character 5
+MOV A, 0x75    ; A = 0x75 (117)
+XOR A, 0x01    ; A = A XOR 0x01
+
+; Character 6
+MOV A, 0x63    ; A = 0x63 (99)
+ADD A, 0x03    ; A = A + 0x03
+
+; Character 7
+MOV A, 0x6B    ; A = 0x6B (107)
+SUB A, 0x02    ; A = A - 0x02
+
+; Character 8
+MOV A, 0x79    ; A = 0x79 (121)
+XOR A, 0x00    ; A = A XOR 0x00
+  </pre>
+  <p class="hint" id="hint" style="display:none;">Execute each instruction sequence. For example: 0x4B XOR 0x03 = 0x48, then 0x48 + 0x01 = 0x49</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('a2VudHVja3k='); // you are not slick
+    const nextPage = "puzzle7.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

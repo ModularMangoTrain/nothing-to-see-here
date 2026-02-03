@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 23: Known-Plaintext Attack</title>
+</head>
+<body>
+  <h1>Puzzle 23: Known-Plaintext Attack</h1>
+  <p>An encrypted flag was intercepted. You know the flag starts with "FLAG{" and uses single-byte XOR encryption.</p>
+  <pre>
+Encrypted Flag (hex):
+0E 0C 03 01 68 2D 29 2C 2C 29
+
+Known Plaintext: "FLAG{"
+
+Known-Plaintext Attack:
+  - Encrypted[0] = 0x0E
+  - Plaintext[0] = 'F' = 0x46
+  - Key = 0x0E XOR 0x46 = ?
+
+Once you find the key, decrypt the entire message.
+  </pre>
+  <p>What is the decrypted flag?</p>
+  <p class="hint" id="hint" style="display:none;">XOR the first encrypted byte with 'F' to find the key. Then XOR all encrypted bytes with that key.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('ZmxhZ3toZWxsbw=='); // you are not slick
+    const nextPage = "puzzle24.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

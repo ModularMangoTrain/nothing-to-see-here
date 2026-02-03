@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 15: Stripped Symbols</title>
+</head>
+<body>
+  <h1>Puzzle 15: Stripped Symbols</h1>
+  <p>A binary was stripped of all symbol names. Only the operations remain. Trace through the logic to find the output.</p>
+  <pre>
+var_1 = 0x42;
+var_2 = 0x55;
+var_3 = 0x47;
+
+var_1 = var_1 + 0x20;    // var_1 = 0x62
+var_2 = var_2 + 0x10;    // var_2 = 0x65
+var_3 = var_3 + 0x20;    // var_3 = 0x67
+
+var_4 = var_1;           // var_4 = 0x62
+var_5 = var_2;           // var_5 = 0x65
+var_6 = var_3;           // var_6 = 0x67
+
+output(var_4);           // Output: ?
+output(var_5);           // Output: ?
+output(var_6);           // Output: ?
+  </pre>
+  <p>What three-character string does the program output?</p>
+  <p class="hint" id="hint" style="display:none;">Follow the operations step by step. Each variable assignment changes the value.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('YmVn'); // you are not slick
+    const nextPage = "puzzle16.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

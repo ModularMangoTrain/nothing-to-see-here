@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 19: Self-Modifying Code</title>
+</head>
+<body>
+  <h1>Puzzle 19: Self-Modifying Code</h1>
+  <p>This program modifies its own instructions during execution and outputs multiple characters. Simulate the mutations mentally to find the final output.</p>
+  <pre>
+Address  Instruction          Description
+-------  -------------------  -----------
+0x1000:  MOV A, 0x6C          ; A = 0x6C = 'l'
+0x1004:  OUTPUT A             ; Output 'l'
+0x1008:  MOV A, 0x65          ; A = 0x65 = 'e'
+0x100C:  OUTPUT A             ; Output 'e'
+0x1010:  MOV A, 0x76          ; A = 0x76 = 'v'
+0x1014:  OUTPUT A             ; Output 'v'
+0x1018:  MODIFY 0x1020, 0x69  ; Change byte at 0x1020 to 0x69
+0x101C:  MOV A, 0x00          ; A = 0x00
+0x1020:  MOV A, 0x00          ; A = 0x00 (will be modified to 0x69!)
+0x1024:  OUTPUT A             ; Output ?
+  </pre>
+  <p>What four-character string does the program output?</p>
+  <p class="hint" id="hint" style="display:none;">Follow execution: Output each character in sequence. The MODIFY instruction changes the next instruction before it executes.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('bGV2aQ=='); // you are not slick
+    const nextPage = "puzzle20.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

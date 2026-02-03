@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 22: Timing Check</title>
+</head>
+<body>
+  <h1>Puzzle 22: Timing Check Bypass</h1>
+  <p>A program checks if input is processed within a time window. But in static analysis, timing doesn't matter!</p>
+  <pre>
+function validate(input) {
+    start_time = get_time();
+    
+    // Process input
+    result = 0;
+    for (i = 0; i < input.length; i++) {
+        result = result ^ input[i];
+        result = (result + 0x13) & 0xFF;
+    }
+    
+    end_time = get_time();
+    
+    // Anti-debug timing check
+    if (end_time - start_time > 100ms) {
+        return "TIMEOUT";
+    }
+    
+    if (result == 0x7A) {
+        return "SUCCESS";
+    }
+    return "FAIL";
+}
+
+Input: "CODE"
+  </pre>
+  <p>Ignore the timing check. What does the function return for input "CODE"?</p>
+  <p class="hint" id="hint" style="display:none;">Calculate the result value step by step. Start with result=0, process each character of "CODE".</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('c3VjY2Vzcw=='); // you are not slick
+    const nextPage = "puzzle23.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

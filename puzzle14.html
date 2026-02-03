@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 14: Anti-Debug Check</title>
+</head>
+<body>
+  <h1>Puzzle 14: Anti-Debug Check</h1>
+  <p>A program has an anti-debug check that crashes if a condition isn't met. Trace back through the code to find what value passes the check.</p>
+  <pre>
+int a = 0x6000;
+int b = 0x700;
+int c = a + b;           // c = 0x6700
+c = c ^ 0x07;            // c = c XOR 0x07
+int x = c;               // x = c
+
+// Anti-debug check
+if (x != 0x6707) {
+    crash();             // Program crashes!
+}
+
+// If we reach here, output x as hex string
+output(x);
+  </pre>
+  <p>The program doesn't crash. What value is x? Convert the hex value to words (e.g., 0x6737 = "six seven").</p>
+  <p class="hint" id="hint" style="display:none;">Work backwards: what value must x be to pass the check? Then trace through the operations.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('c2l4c2V2ZW4='); // you are not slick
+    const nextPage = "puzzle15.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>

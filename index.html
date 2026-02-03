@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentines ARG Challenges</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Welcome to the Valentines ARG Challenges</h1>
+  <p>This is an Alternate Reality Game that must be completed before February 12th. For Valentines</p>
+  <p>This will consist of multiple puzzles to solve. 25 to be exact, these puzzles will be things that you have no prior knowledge of</p>
+  <p>These puzzles are mainly mathsy and generally context and reasoning based. Yes you have to complete this, you have no choice in the matter</p>
+  <p>You are allowed to use any resources to HELP solve the puzzles, a notepad and pen is recomended. No AI. Complete blanket ban, imagine using ChatGPT on sudoku, yeah</p>
+  <p>This is strictly your own game, do not share the website with anyone else</p>
+
+
+  <p>Are you ready to begin?</p>
+  
+  <label>
+    <input type="checkbox" id="confirm">
+    I confirm
+  </label>
+  <br><br>
+  <button onclick="start()">Start</button>
+  <button onclick="reset()">Reset Progress</button>
+
+  <script>
+    // Check if user already confirmed and has progress
+    if(localStorage.getItem('confirmed') === 'true') {
+      const progress = localStorage.getItem('progress');
+      if(progress) {
+        window.location.href = progress;
+      }
+    }
+
+    function start() {
+      if(document.getElementById('confirm').checked) {
+        localStorage.setItem('confirmed', 'true');
+        localStorage.setItem('progress', 'puzzle1.html');
+        window.location.href = 'puzzle1.html';
+      } else {
+        alert('Please confirm to continue');
+      }
+    }
+
+    function reset() {
+      localStorage.clear();
+      location.reload();
+    }
+  </script>
+</body>
+</html>

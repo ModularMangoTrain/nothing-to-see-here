@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">^<title>Puzzle 18: Checksum Verification</title>
+</head>
+<body>
+  <h1>Puzzle 18: Checksum Verification</h1>
+  <p>A simple checksum algorithm is used to verify data integrity. Find the 4-letter word that produces the target checksum.</p>
+  <pre>
+Checksum Algorithm:
+  1. Start with sum = 0
+  2. For each byte in input:
+     - Add byte value to sum
+     - XOR sum with 0xFF
+  3. Return sum & 0xFF (last byte only)
+
+Target Checksum: 0x42
+
+Test these words:
+  - "SHELDONCOOPER"
+  - "LEONARDHOFSTADTER" 
+  - "HOWARDWOLOWITZ"
+  - "RAJESHKOOTHRAPPALI"
+  </pre>
+  <p>Which word produces checksum 0x42?</p>
+  <p class="hint" id="hint" style="display:none;">Calculate for each word using the algorithm. The answer is one of the test words provided.</p>
+  <button onclick="showHint()">Hint</button>
+  <input type="text" id="answer" placeholder="Enter your answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    const expectedAnswer = atob('c2hlbGRvbmNvb3Blcg=='); // you are not slick
+    const nextPage = "puzzle19.html";
+
+    function showHint() {
+      document.getElementById('hint').style.display = 'block';
+    }
+
+    function checkAnswer() {
+      const userInput = document.getElementById("answer").value.toLowerCase().replace(/\s/g, '');
+      if(userInput === expectedAnswer) {
+        localStorage.setItem('progress', nextPage);
+        window.location.href = nextPage;
+      } else {
+        alert("Not quite, try again");
+      }
+    }
+  </script>
+</body>
+</html>
