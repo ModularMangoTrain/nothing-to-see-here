@@ -10,32 +10,31 @@
   <p>Execute the instructions step by step and convert the final value in register A to ASCII to get each letter.</p>
   <pre>
 ; Character 1
-MOV A, 0x4B    ; A = 0x4B (75)
+MOV A, 0x68    ; A = 0x68 (104)
 XOR A, 0x03    ; A = A XOR 0x03
-ADD A, 0x01    ; A = A + 0x01
 
 ; Character 2
-MOV A, 0x65    ; A = 0x65 (101)
+MOV A, 0x69    ; A = 0x69 (105)
 SUB A, 0x04    ; A = A - 0x04
 
 ; Character 3
-MOV A, 0x6E    ; A = 0x6E (110)
+MOV A, 0x6C    ; A = 0x6C (108)
 XOR A, 0x02    ; A = A XOR 0x02
 
 ; Character 4
-MOV A, 0x74    ; A = 0x74 (116)
+MOV A, 0x7A    ; A = 0x7A (122)
 SUB A, 0x06    ; A = A - 0x06
 
 ; Character 5
-MOV A, 0x75    ; A = 0x75 (117)
+MOV A, 0x74    ; A = 0x74 (116)
 XOR A, 0x01    ; A = A XOR 0x01
 
 ; Character 6
-MOV A, 0x63    ; A = 0x63 (99)
+MOV A, 0x60    ; A = 0x60 (96)
 ADD A, 0x03    ; A = A + 0x03
 
 ; Character 7
-MOV A, 0x6B    ; A = 0x6B (107)
+MOV A, 0x6D    ; A = 0x6D (109)
 SUB A, 0x02    ; A = A - 0x02
 
 ; Character 8
